@@ -29,24 +29,6 @@ function playGame() {
    let humanScore = 0;
    let computerScore = 0;
 
-   for (let i = 0; i < 5; i++) {
-      const humanSelection = getHumanChoice();
-      const computerSelection = getComputerChoice();
-
-      console.log(playRound(humanSelection, computerSelection));
-   }
-
-   if (humanScore > computerScore) {
-      return `Game Over! Human wins ${humanScore} - ${computerScore}`
-      // humano gana
-   } else if (computerScore > humanScore) {
-      return `Game Over! Computer wins ${computerScore} - ${humanScore}`
-      // computadora gana
-   } else {
-      return `Game Over! Empate ${humanScore} - ${computerScore}`
-      // empate
-   }
-
    //Juego a una ronda
    function playRound(humanSelection, computerSelection) {
 
@@ -57,12 +39,31 @@ function playGame() {
          (humanSelection == "scissors" && computerSelection == "paper")) {
          humanScore++;
          return `You win! ${humanSelection} beats ${computerSelection}`;
-      } else if ((humanSelection == "scissors" && computerSelection == "rock") || 
-      (humanSelection == "rock" && computerSelection == "paper") || 
-      (humanSelection == "paper" && computerSelection == "scissors")) {
+      } else if ((humanSelection == "scissors" && computerSelection == "rock") ||
+         (humanSelection == "rock" && computerSelection == "paper") ||
+         (humanSelection == "paper" && computerSelection == "scissors")) {
          computerScore++;
          return `You Lose! ${computerSelection} beats ${humanSelection}`;
       }
+   }
+   //El buble que permite iterar las rondas
+   for (let i = 0; i < 5; i++) {
+      const humanSelection = getHumanChoice();
+      const computerSelection = getComputerChoice();
+
+      console.log(playRound(humanSelection, computerSelection));
+   }
+
+   //Comparador de puntajes
+   if (humanScore > computerScore) {
+      return `Game Over! Human wins ${humanScore} - ${computerScore}`
+      // humano gana
+   } else if (computerScore > humanScore) {
+      return `Game Over! Computer wins ${computerScore} - ${humanScore}`
+      // computadora gana
+   } else {
+      return `Game Over! Empate ${humanScore} - ${computerScore}`
+      // empate
    }
 }
 
